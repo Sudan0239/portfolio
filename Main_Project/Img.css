@@ -1,0 +1,54 @@
+.avatar{
+    z-index: 
+    10;
+    position: absolute;
+    top: 20px;
+    border-radius: 200px;
+    border: 3px solid white;
+    width: 200px;
+    height: 200px;
+    margin-left: 160px;
+    margin-top: 120px;
+    object-fit: cover;
+    box-shadow: 0 0 15px #000, 0 0 20px #00eaff;
+    transition: color 0.3s, text-shadow 0.3s, transform 0.3s;
+    background-color: rgb(101, 99, 99);
+}
+.avatar:hover{
+    color: #fff;
+    text-shadow: 0 0 15px #fff, 0 0 30px #00eaff;
+    transform: scale(1.08);
+}
+.icon-app{
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: rgb(48, 47, 47);
+    box-shadow: 0 0 15px #000, 0 0 12px #00eaff;
+    transition: color 0.3s, text-shadow 0.3s, transform 0.3s;
+    z-index: 50;
+    margin: 60px -10px -30px 130px;
+    position: absolute;
+}
+.phone-icon{
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: rgb(48, 47, 47);
+    box-shadow: 0 0 15px #000, 0 0 12px #00eaff;
+    transition: color 0.3s, text-shadow 0.3s, transform 0.3s;
+    z-index: 50;
+    margin: 150px -15px -30px 130px;
+    position: absolute;
+}
+.location-image{
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: rgb(48, 47, 47);
+    box-shadow: 0 0 15px #000, 0 0 12px #00eaff;
+    transition: color 0.3s, text-shadow 0.3s, transform 0.3s;
+    z-index: 50;
+    margin: 240px -15px -30px 130px;
+    position: absolute;
+}
