@@ -333,3 +333,145 @@ html {
     line-height: 1.45;
     margin: 30px 320px 90px 0px;
 }
+
+.contact-map {
+    width: min(100%, 810px);
+    height: 470px;
+    border: 0;
+    border-radius: 50px;
+    white-space: initial;
+    margin-top: 20px;
+}
+
+@media (max-width: 1200px) {
+    .heading { left: 540px; }
+    .blog { left: 670px; }
+    .resume { left: 780px; }
+    .contact { left: 910px; }
+    .login { left: 1050px; }
+
+    .box3 {
+        margin-left: 460px;
+    }
+
+    .about-me,
+    .blog-title,
+    .resume-title,
+    .contact-title {
+        left: 500px;
+    }
+
+    .about-me-info,
+    .blog-info,
+    .resume-info,
+    .contact-info {
+        left: 400px;
+        margin-right: 60px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 16px;
+    }
+
+    .box1,
+    .box2 {
+        width: 100%;
+        max-width: 360px;
+        height: auto;
+        padding: 20px;
+        margin: 0 auto;
+        position: static;
+    }
+
+    .box2 {
+        display: none;
+    }
+
+    .box3 {
+        width: 100%;
+        max-width: 360px;
+        margin: 16px auto 0;
+        padding: 12px 18px;
+        position: static;
+    }
+
+    .heading,
+    .blog,
+    .resume,
+    .contact,
+    .login {
+        position: static;
+        display: inline-block;
+        margin: 4px 10px;
+        font-size: 14px;
+    }
+
+    .avatar,
+    .name,
+    .box4,
+    .icon-app,
+    .title-email,
+    .mail,
+    .phone,
+    .phone-no,
+    .phone-icon,
+    .location-image,
+    .location-1,
+    .location-info,
+    .about-me,
+    .about-me-info,
+    .blog-title,
+    .blog-info,
+    .resume-title,
+    .resume-info,
+    .contact-title,
+    .contact-info {
+        position: static;
+        left: auto;
+        top: auto;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .avatar {
+        display: block;
+        margin-top: 18px;
+    }
+
+    .name,
+    .box4,
+    .title-email,
+    .mail,
+    .phone,
+    .phone-no,
+    .location-1,
+    .location-info,
+    .about-me,
+    .blog-title,
+    .resume-title,
+    .contact-title {
+        text-align: center;
+    }
+
+    .icon-app,
+    .phone-icon,
+    .location-image {
+        display: block;
+        margin: 10px auto;
+    }
+
+    .about-me-info,
+    .blog-info,
+    .resume-info,
+    .contact-info {
+        margin: 12px 0;
+        text-align: left;
+    }
+
+    .contact-map {
+        height: 280px;
+        border-radius: 20px;
+    }
+}

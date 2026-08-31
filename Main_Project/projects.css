@@ -9,11 +9,73 @@
     text-decoration: none;
     letter-spacing: 0.2px;
 }
+.project-info {
+    margin: 30px 80px 90px 0;
+}
+
+.certification-grid {
+    position: absolute;
+    top: 300px;
+    left: 580px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(160px, 1fr));
+    gap: 30px;
+    max-width: 480px;
+}
+
 .certificate-img{
     width: 200px;
     height: 200px;
     z-index: 1002;
+    position: static;
+    display: block;
+}
+
+.project-note {
+    font-weight: bold;
+    font-size: medium;
+    color: white;
     position: absolute;
-    top: 300px;
+    z-index: 1000;
+    top: 760px;
     left: 580px;
+}
+
+@media (max-width: 1100px) {
+    .project-title {
+        left: 40px;
+    }
+
+    .certification-grid {
+        left: 40px;
+        right: 40px;
+        max-width: none;
+    }
+
+    .project-note {
+        left: 40px;
+        right: 40px;
+        top: 790px;
+    }
+}
+
+@media (max-width: 768px) {
+    .certification-grid {
+        position: static;
+        grid-template-columns: 1fr;
+        margin: 130px 0 20px;
+    }
+
+    .project-note {
+        position: static;
+        margin-top: 10px;
+        display: block;
+        text-align: center;
+    }
+
+    .certificate-img {
+        width: min(280px, 100%);
+        height: auto;
+        margin: 0 auto;
+    }
 }
