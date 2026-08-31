@@ -83,20 +83,40 @@
         RESUME
       </p>
       <p class="resume-info">
-       
+        
       </p>
     </div>
 
     <div id="contact-section" class="content-section" style="display: none">
-      <p class="contact-title" style="font-size: 19px; font-weight: bold">
-        CONTACT
-      </p>
-      <p class="contact-info">
-        <strong>Address:</strong> Salem, Tamil Nadu, India<br />
-        <strong>Email:</strong> <a href="mailto:sudansrini@gmail.com">sudansrini@gmail.com</a><br />
-        <strong>Phone:</strong> <a href="tel:+916381214264">+91 63812 14264</a><br />
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.123456789!2d78.123456789!3d10.123456789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3babf1ccf52cba0b%3A0xee9989007068ca47!2sSalem%2C%20Tamil%20Nadu%2C%20India!5e0!3m2!1sen!2sus!4v1611234567890!5m2!1sen!2sus" frameborder="0" class="contact-map" allowfullscreen="" loading="lazy"></iframe>
-      </p>
+      <div class="contact-header">
+        <h2 class="contact-title">CONTACT</h2>
+      </div>
+      <div class="contact-info">
+        <div class="contact-details">
+          <p><strong>Address:</strong> Salem, Tamil Nadu, India</p>
+          <p><strong>Email:</strong> <a href="mailto:sudansrini@gmail.com">sudansrini@gmail.com</a></p>
+          <p><strong>Phone:</strong> <a href="tel:+916381214264">+91 63812 14264</a></p>
+        </div>
+
+        <form class="contact-form" id="contactForm">
+          <div class="form-row">
+            <label for="contact-name">Name</label>
+            <input id="contact-name" name="name" type="text" placeholder="Your name" required />
+          </div>
+
+          <div class="form-row">
+            <label for="contact-phone">Phone / Email ID</label>
+            <input id="contact-phone" name="contact" type="text" placeholder="Phone number or email" required />
+          </div>
+
+          <div class="form-row">
+            <label for="contact-message">Message</label>
+            <textarea id="contact-message" name="message" rows="4" placeholder="Write your message here..." required></textarea>
+          </div>
+
+          <button type="submit" class="send-btn">Send Message</button>
+        </form>
+      </div>
     </div>
 <div id="projects-section" class="content-section" style="display: none">
   <p class="project-title" style="font-size: 19px; font-weight: bold">
@@ -104,7 +124,7 @@
   </p>
   <div class="project-info">
     <span class="certification-grid">
-      <a href="https://www.credly.com/badges/0c079ff2-a117-4a02-a5ec-eefb32a4ec44/linked_in_profile"><img src="https://images.credly.com/size/680x680/images/5bf37709-4b69-4cdc-9edc-af7b3370d427/image.png" alt="Certificate3" class="certificate-img"/></a>
+      <a href="https://www.credly.com/badges/0c079ff2-a117-4a02-a5ec-eefb32a4ec44/linked_in_profile"><img src="https://images.credly.com/size/680x680/images/3b1b42e6-dfc2-492b-90df-8058096cb93d/blob" alt="Certificate3" class="certificate-img"/></a>
       <a href="https://www.credly.com/badges/966e9916-2cea-4735-893b-1852d6f45ec8/linked_in_profile"><img src="https://images.credly.com/size/680x680/images/73e4a58b-a8ef-41a3-a7db-9183dd269882/image.png" alt="Certificate2" class="certificate-img"/></a>
       <a href="https://www.credly.com/badges/0d795d7d-abea-41c5-b1d1-d0849b5067b7/linked_in_profile"><img src="https://images.credly.com/size/680x680/images/b7695469-4083-4e65-b11b-ffc90f4492dd/image.png" alt="Certificate1" class="certificate-img" /></a>
       <a href="https://www.credly.com/badges/81434f58-4871-42f6-8692-f3c6c2919421/linked_in_profile"><img src="https://images.credly.com/size/680x680/images/8d67bbf4-128b-4141-b5f1-1bc61bbfbaa6/image.png" alt="Certificate4" class="certificate-img"/></a>
@@ -225,6 +245,129 @@
       .content-section {
       transition: opacity 0.5s ease;
       font-family: 'Space Mono', monospace;
+      }
+      #contact-section {
+        position: relative;
+      }
+      .contact-header {
+        position: relative;
+        width: 100%;
+        margin: 0 0 18px;
+        padding-bottom: 12px;
+      }
+      .contact-header::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 4px;
+        background: #3ad8ff;
+        border-radius: 999px;
+      }
+      .contact-title {
+        margin: 0;
+        color: #171714;
+        font-family: Georgia, serif;
+        font-size: clamp(3.5rem, 7vw, 8.6rem);
+        font-weight: 400;
+        line-height: 0.82;
+        letter-spacing: -0.08em;
+        text-align: left;
+      }
+      .contact-info {
+        display: grid;
+        grid-template-columns: 1.2fr 1.8fr;
+        gap: 32px;
+        align-items: start;
+        max-width: 980px;
+        margin-top: 8px;
+      }
+      .contact-details {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        color: #171714;
+        font-size: 14px;
+        line-height: 1.8;
+      }
+      .contact-details p {
+        margin: 0;
+      }
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        padding: 22px 20px;
+        background: rgba(23, 23, 20, 0.02);
+        border: 1px solid rgba(23, 23, 20, 0.12);
+        border-radius: 12px;
+      }
+      .form-row {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .form-row label {
+        color: #171714;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .form-row input,
+      .form-row textarea {
+        width: 100%;
+        padding: 12px 14px;
+        border: 1px solid rgba(23, 23, 20, 0.18);
+        border-radius: 8px;
+        background: rgba(255,255,255,0.4);
+        color: #171714;
+        font-family: 'Space Mono', monospace;
+        font-size: 13px;
+        resize: vertical;
+        box-sizing: border-box;
+      }
+      .form-row input:focus,
+      .form-row textarea:focus {
+        outline: 2px solid rgba(217, 243, 90, 0.8);
+        border-color: #171714;
+      }
+      .send-btn {
+        align-self: flex-start;
+        padding: 12px 18px;
+        border: 1px solid #171714;
+        border-radius: 999px;
+        background: #d9f35a;
+        color: #171714;
+        font-family: 'Space Mono', monospace;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .send-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 8px 18px rgba(23, 23, 20, 0.12);
+      }
+      @media (max-width: 700px) {
+        .contact-header {
+          margin-bottom: 14px;
+          padding-bottom: 10px;
+        }
+        .contact-header::after {
+          height: 3px;
+        }
+        .contact-title {
+          font-size: clamp(2.5rem, 13vw, 4.5rem);
+          line-height: 0.9;
+        }
+        .contact-info {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
       }
       .resume-container {
         margin: 25px auto;
@@ -379,6 +522,28 @@
         resumeContainer.style.marginTop = '10px';
         }
       }
+      
+      function animateContactTitle() {
+        const contactHeader = document.querySelector('.contact-header');
+        if (contactHeader) {
+          contactHeader.style.position = 'relative';
+          contactHeader.style.width = '100%';
+          contactHeader.style.marginBottom = '18px';
+          contactHeader.style.paddingBottom = '12px';
+        }
+
+        const contactTitle = document.querySelector('.contact-title');
+        if (contactTitle) {
+          contactTitle.style.margin = '0';
+          contactTitle.style.color = '#171714';
+          contactTitle.style.fontFamily = 'Georgia, serif';
+          contactTitle.style.fontSize = 'clamp(3.5rem, 7vw, 8.6rem)';
+          contactTitle.style.fontWeight = '400';
+          contactTitle.style.lineHeight = '0.82';
+          contactTitle.style.letterSpacing = '-0.08em';
+          contactTitle.style.textAlign = 'left';
+        }
+      }
       // Call the function when resume section is shown
       document.querySelectorAll(".resume").forEach(function(el) {
         el.addEventListener("click", function() {
@@ -407,6 +572,7 @@
     el.addEventListener("click", function (e) {
       e.preventDefault();
       showSection("contact-section");
+      setTimeout(animateContactTitle, 900);
     });
     });
     document.querySelectorAll(".login").forEach(function (el) {
@@ -415,6 +581,24 @@
       showSection("projects-section");
     });
     });
+
+    const contactForm = document.getElementById("contactForm");
+    if (contactForm) {
+      contactForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const name = document.getElementById("contact-name").value.trim();
+        const contact = document.getElementById("contact-phone").value.trim();
+        const message = document.getElementById("contact-message").value.trim();
+
+        if (!name || !contact || !message) {
+          alert("Please fill in all fields before sending.");
+          return;
+        }
+
+        alert("Message sent successfully!");
+        contactForm.reset();
+      });
+    }
 
     const savedBlog = localStorage.getItem("portfolioBlog");
     if (savedBlog) {
@@ -430,7 +614,6 @@
         localStorage.removeItem("portfolioBlog");
       }
     }
-    showSection("about-me-section");
   </script>
   </body>
 </html>
