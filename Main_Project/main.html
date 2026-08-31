@@ -125,9 +125,9 @@
   <div class="project-info">
     <span class="certification-grid">
       <a href="https://www.credly.com/badges/0c079ff2-a117-4a02-a5ec-eefb32a4ec44/linked_in_profile"><img src="https://images.credly.com/size/680x680/images/3b1b42e6-dfc2-492b-90df-8058096cb93d/blob" alt="Certificate3" class="certificate-img"/></a>
-      <a href="https://www.credly.com/badges/966e9916-2cea-4735-893b-1852d6f45ec8/linked_in_profile"><img src="https://images.credly.com/size/680x680/images/73e4a58b-a8ef-41a3-a7db-9183dd269882/image.png" alt="Certificate2" class="certificate-img"/></a>
-      <a href="https://www.credly.com/badges/0d795d7d-abea-41c5-b1d1-d0849b5067b7/linked_in_profile"><img src="https://images.credly.com/size/680x680/images/b7695469-4083-4e65-b11b-ffc90f4492dd/image.png" alt="Certificate1" class="certificate-img" /></a>
-      <a href="https://www.credly.com/badges/81434f58-4871-42f6-8692-f3c6c2919421/linked_in_profile"><img src="https://images.credly.com/size/680x680/images/8d67bbf4-128b-4141-b5f1-1bc61bbfbaa6/image.png" alt="Certificate4" class="certificate-img"/></a>
+      <a href="https://www.credly.com/badges/966e9916-2cea-4735-893b-1852d6f45ec8/linked_in_profile"><img src="https://images.credly.com/size/680x680/images/e3541a0c-dd4a-4820-8052-5001006efc85/blob" alt="Certificate2" class="certificate-img"/></a>
+      <a href="https://www.credly.com/badges/0d795d7d-abea-41c5-b1d1-d0849b5067b7/linked_in_profile"><img src="https://images.credly.com/size/680x680/images/94eac7af-d49a-4f94-adfa-c4518fd50b91/blob" alt="Certificate1" class="certificate-img" /></a>
+      <a href="https://www.credly.com/badges/81434f58-4871-42f6-8692-f3c6c2919421/linked_in_profile"><img src="https://images.credly.com/size/680x680/images/e51a8579-188d-4363-8ed1-12ad164ef57b/blob" alt="Certificate4" class="certificate-img"/></a>
     </span>
   </div>
   <h1 class="project-note">To verify, Click on the Badges to authenticate via Credly!</h1>
@@ -351,6 +351,46 @@
       .send-btn:hover {
         transform: translateY(-1px);
         box-shadow: 0 8px 18px rgba(23, 23, 20, 0.12);
+      }
+      .custom-toast {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 2000;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-width: 260px;
+        max-width: 340px;
+        padding: 14px 16px;
+        border-radius: 12px;
+        background: rgba(23, 23, 20, 0.96);
+        color: #f5f0e8;
+        box-shadow: 0 18px 40px rgba(23, 23, 20, 0.2);
+        font-family: 'Space Mono', monospace;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: none;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: opacity 0.25s ease, transform 0.25s ease;
+      }
+      .custom-toast.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .toast-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: #a7e75f;
+        color: #171714;
+        font-size: 14px;
+        font-weight: 700;
       }
       @media (max-width: 700px) {
         .contact-header {
@@ -582,6 +622,24 @@
     });
     });
 
+    function showToast(message) {
+      let toast = document.querySelector('.custom-toast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.className = 'custom-toast';
+        toast.innerHTML = '<span class="toast-icon">✓</span><span>' + message + '</span>';
+        document.body.appendChild(toast);
+      } else {
+        toast.innerHTML = '<span class="toast-icon">✓</span><span>' + message + '</span>';
+      }
+
+      toast.classList.add('show');
+      clearTimeout(showToast.timeoutId);
+      showToast.timeoutId = setTimeout(function () {
+        toast.classList.remove('show');
+      }, 2500);
+    }
+
     const contactForm = document.getElementById("contactForm");
     if (contactForm) {
       contactForm.addEventListener("submit", function (event) {
@@ -591,11 +649,11 @@
         const message = document.getElementById("contact-message").value.trim();
 
         if (!name || !contact || !message) {
-          alert("Please fill in all fields before sending.");
+          showToast('Please fill in all fields before sending.');
           return;
         }
 
-        alert("Message sent successfully!");
+        showToast('Message sent successfully!');
         contactForm.reset();
       });
     }

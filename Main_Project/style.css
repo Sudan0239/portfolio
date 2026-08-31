@@ -1,6 +1,7 @@
 :root { --ink: #171714; --paper: #eee9dc; --lime: #d9f35a; --olive: #8b8c2c; --muted: #74736a; --line: rgba(23,23,20,.22); }
 * { box-sizing: border-box; }
 * { text-shadow: none !important; }
+img { display: block; max-width: 100%; height: auto; }
 html { scroll-behavior: smooth; background: var(--ink); }
 body { min-height: 100vh; margin: 0; overflow-x: hidden; color: var(--ink); background: var(--paper); font-family: "Space Mono", "Courier New", monospace; }
 body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opacity: .28; background-image: linear-gradient(rgba(23,23,20,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(23,23,20,.035) 1px, transparent 1px); background-size: 28px 28px; }
@@ -57,4 +58,44 @@ a { color: inherit; text-decoration: none; }
 @keyframes paper-drift { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-12px, 10px, 0); } }
 @keyframes sphere-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.035); } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; } }
-@media (max-width: 700px) { .box1 { top: 70px; right: 0; width: 68vw; height: 390px; } .box3 { top: 210px; right: 11vw; width: 48vw; height: 48vw; } .heading { left: 6vw; } .blog { left: 29vw; } .resume { left: 45vw; } .contact { display: none; } .admin-link { top: 58px; left: 8vw; right: auto; } .login { top: 58px; right: 6vw; } .avatar { top: 150px; left: 8vw; width: 125px; height: 125px; box-shadow: 12px 12px 0 var(--lime); } .name { top: 155px; left: 43vw; font-size: clamp(42px, 13vw, 76px); background: linear-gradient(90deg, var(--paper) 0 45%, var(--ink) 45% 100%); -webkit-background-clip: text; background-clip: text; } .box4 { top: 305px; left: 8vw; } .icon-app, .phone-icon, .location-image { left: 8vw; } .title-email, .phone, .location-1, .mail, .phone-no, .location-info { left: 16vw; } .title-email { top: 350px; } .mail { top: 373px; } .phone { top: 405px; } .phone-no { top: 428px; } .location-1 { top: 460px; } .location-info { top: 483px; } .icon-app { top: 348px; } .phone-icon { top: 403px; } .location-image { top: 458px; } .content-section { margin-top: 540px; padding: 110px 8vw 70px; } }
+@media (max-width: 900px) {
+  .heading { left: 6vw; }
+  .blog { left: 23vw; }
+  .resume { left: 38vw; }
+  .contact { left: 52vw; }
+  .admin-link { right: 20vw; }
+  .avatar { width: clamp(120px, 22vw, 170px); height: clamp(120px, 22vw, 170px); }
+  .name { left: 31vw; }
+  .title-email, .phone, .location-1, .mail, .phone-no, .location-info { left: 31vw; }
+  .icon-app, .phone-icon, .location-image { left: 27vw; }
+  .certificate-img { width: clamp(110px, 20vw, 150px); height: clamp(110px, 20vw, 150px); }
+}
+
+@media (max-width: 700px) {
+  .box1 { top: 70px; right: 0; width: 68vw; height: 390px; }
+  .box3 { top: 210px; right: 11vw; width: 48vw; height: 48vw; }
+  .heading { left: 6vw; }
+  .blog { left: 29vw; }
+  .resume { left: 45vw; }
+  .contact { display: none; }
+  .admin-link { top: 58px; left: 8vw; right: auto; }
+  .login { top: 58px; right: 6vw; }
+  .avatar { top: 150px; left: 8vw; width: clamp(110px, 34vw, 150px); height: clamp(110px, 34vw, 150px); box-shadow: 12px 12px 0 var(--lime); }
+  .name { top: 155px; left: 43vw; font-size: clamp(42px, 13vw, 76px); background: linear-gradient(90deg, var(--paper) 0 45%, var(--ink) 45% 100%); -webkit-background-clip: text; background-clip: text; }
+  .box4 { top: 305px; left: 8vw; }
+  .icon-app, .phone-icon, .location-image { left: 8vw; }
+  .title-email, .phone, .location-1, .mail, .phone-no, .location-info { left: 16vw; }
+  .title-email { top: 350px; }
+  .mail { top: 373px; }
+  .phone { top: 405px; }
+  .phone-no { top: 428px; }
+  .location-1 { top: 460px; }
+  .location-info { top: 483px; }
+  .icon-app { top: 348px; }
+  .phone-icon { top: 403px; }
+  .location-image { top: 458px; }
+  .content-section { margin-top: 540px; padding: 110px 8vw 70px; }
+  .contact-info { grid-template-columns: 1fr; gap: 24px; }
+  .certificate-img { width: clamp(110px, 36vw, 150px); height: clamp(110px, 36vw, 150px); }
+  .contact-form { width: 100%; }
+}
