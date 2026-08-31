@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="header.css" />
     <link rel="stylesheet" href="Img.css" />
     <link rel="stylesheet" href="projects.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="box1"></div>
@@ -18,20 +19,21 @@
     <a href="#resume" class="resume">RESUME</a>
     <a href="#contact" class="contact">CONTACT</a>
     <a href="#projects" class="login">CERTIFY</a>
-    <img src="https://i.ibb.co/v9Bq0rG/Gemini-Generated-Image-o36edzo36edzo36e.png" alt="My Img" class="avatar" />
+    <a href="login.html" class="admin-link">LOGIN</a>
+    <img src="../Images/AvatarMaker.png" alt="My Img" class="avatar" />
     <h1 class="name">Sudan Srinivasan</h1>
     <p class="title-email">EMAIL</p>
     <a href="mailto:sudansrini@gmail.com" class="mail">sudansrini@gmail.com</a>
     <img
-      src="https://i.pinimg.com/736x/ff/58/b8/ff58b812e92fe5dd769665156d14bd84.jpg"
+      src="../Images/pngtree-email-icon-design-png-image_2413695.png"
       alt="icon-app"
       class="icon-app"
     />
     <p class="phone">PHONE</p>
     <a href="tel:+916381214264" class="phone-no">+916381214264</a>
-    <img src="https://static.vecteezy.com/system/resources/thumbnails/042/760/265/small/phone-icon-design-graphic-resource-vector.jpg" class="phone-icon" alt="" />
+    <img src="../Images/phone.png" class="phone-icon" alt="" />
     <img
-      src="https://png.pngtree.com/png-vector/20190508/ourmid/pngtree-vector-location-icon-png-image_1028445.jpg"
+      src="../Images/location-image-removebg-preview.png"
       class="location-image"
       alt=""
     />
@@ -146,7 +148,7 @@
       // Add CSS for the loading animation
       document.head.insertAdjacentHTML('beforeend', `
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Mono:wght@400;700&display=swap');
       
       .loading-animation {
       position: fixed;
@@ -157,9 +159,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: rgba(0, 0, 0, 0.5);
+      background-color: rgba(238, 233, 220, 0.94);
       z-index: 1000;
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Space Mono', monospace;
       }
       .spinner-container {
       display: flex;
@@ -169,15 +171,16 @@
       position: relative;
       }
       .loading-text {
-      color: #FFFFFF;
-      font-size: 16px;
-      letter-spacing: 2px;
-      font-family: 'Poppins', sans-serif;
-      animation: pulse 1.5s infinite ease-in-out;
+      color: #171714;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      font-family: 'Space Mono', monospace;
+      animation: loading-pulse 1.5s infinite ease-in-out;
       }
       .spinner {
-      width: 60px;
-      height: 60px;
+      width: 68px;
+      height: 68px;
       border-radius: 50%;
       position: relative;
       animation: rotate 2s linear infinite;
@@ -191,17 +194,17 @@
       .spinner::before {
       width: 100%;
       height: 100%;
-      border: 4px solid transparent;
-      border-top-color: #00eaff;
-      border-left-color: #00eaff;
-      animation: spin 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+      border: 4px solid rgba(23, 23, 20, 0.14);
+      border-top-color: #d9f35a;
+      border-left-color: #171714;
+      animation: spin 1.1s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
       }
       .spinner::after {
       width: 80%;
       height: 80%;
       border: 4px solid transparent;
-      border-right-color: #00eaff;
-      border-bottom-color: #00eaff;
+      border-right-color: #8b8c2c;
+      border-bottom-color: #171714;
       top: 10%;
       left: 10%;
       animation: spin 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite reverse;
@@ -212,13 +215,13 @@
       @keyframes spin {
       to { transform: rotate(360deg); }
       }
-      @keyframes pulse {
+      @keyframes loading-pulse {
       0%, 100% { opacity: 0.5; }
       50% { opacity: 1; }
       }
       .content-section {
       transition: opacity 0.5s ease;
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Space Mono', monospace;
       }
       .resume-container {
         margin: 25px auto;
@@ -409,6 +412,21 @@
       showSection("projects-section");
     });
     });
+
+    const savedBlog = localStorage.getItem("portfolioBlog");
+    if (savedBlog) {
+      try {
+        const blog = JSON.parse(savedBlog);
+        const blogTitle = document.querySelector(".blog-title");
+        const blogInfo = document.querySelector(".blog-info");
+        if (blog.title && blog.body && blog.updatedAt && blogTitle && blogInfo) {
+          blogTitle.textContent = blog.title;
+          blogInfo.innerHTML = `${blog.body.replace(/[&<>]/g, character => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[character])).replace(/\r?\n/g, "<br>")}<br><br><em>Last Updated: ${blog.updatedAt}</em>`;
+        }
+      } catch (error) {
+        localStorage.removeItem("portfolioBlog");
+      }
+    }
     showSection("about-me-section");
   </script>
   </body>

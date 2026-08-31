@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Mono:wght@400;700&display=swap');
+
+:root { --ink: #171714; --paper: #eee9dc; --lime: #d9f35a; --olive: #8b8c2c; --muted: #74736a; --line: rgba(23, 23, 20, .22); }
+* { box-sizing: border-box; text-shadow: none !important; }
+html { min-height: 100%; background: var(--ink); }
+body { min-height: 100vh; margin: 0; color: var(--ink); background: var(--paper); font-family: "Space Mono", "Courier New", monospace; }
+body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opacity: .3; background-image: linear-gradient(rgba(23, 23, 20, .035) 1px, transparent 1px), linear-gradient(90deg, rgba(23, 23, 20, .035) 1px, transparent 1px); background-size: 28px 28px; }
+a { color: inherit; text-decoration: none; }
+.editor-shell { position: relative; z-index: 1; width: min(1100px, 100%); min-height: 100vh; margin: auto; padding: 34px 7vw 28px; }
+.back-link, .eyebrow, label, button, .footer-note { font-size: 10px; font-weight: 700; letter-spacing: .1em; }
+.back-link { display: inline-block; color: var(--muted); }
+.back-link:hover { color: var(--olive); }
+.editor-card { width: min(720px, 100%); margin: 12vh auto 0; padding: 0 0 70px; }
+.eyebrow { margin: 0 0 22px; color: var(--muted); }
+h1, h2 { margin: 0; font-family: "DM Serif Display", Georgia, serif; font-weight: 400; letter-spacing: -.055em; line-height: .88; }
+h1 { font-size: clamp(74px, 12vw, 150px); }
+h1 em { color: var(--olive); }
+h2 { font-size: clamp(42px, 6vw, 72px); }
+.intro { max-width: 380px; margin: 32px 0 42px; color: var(--muted); font-size: 12px; line-height: 1.8; }
+.login-form, .editor-form { display: grid; max-width: 500px; gap: 10px; }
+.editor-form { max-width: 680px; }
+label { margin-top: 14px; color: var(--muted); }
+input, textarea { width: 100%; padding: 14px 0; color: var(--ink); background: transparent; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; outline: none; font: inherit; font-size: 13px; }
+textarea { resize: vertical; line-height: 1.7; }
+input:focus, textarea:focus { border-color: var(--olive); }
+button { display: inline-flex; align-items: center; justify-content: space-between; width: fit-content; min-width: 150px; margin-top: 22px; padding: 14px 16px; color: var(--ink); background: var(--lime); border: 0; border-radius: 999px; cursor: pointer; font: inherit; }
+button span { margin-left: 25px; font-size: 16px; }
+button:hover { background: var(--ink); color: var(--lime); }
+.quiet-button { min-width: auto; padding: 11px 14px; color: var(--muted); background: transparent; border: 1px solid var(--line); }
+.editor-header { display: flex; align-items: end; justify-content: space-between; margin-bottom: 18px; }
+.editor-header .eyebrow { margin-bottom: 14px; }
+.form-message { min-height: 18px; margin: 10px 0 0; color: var(--olive); font-size: 11px; line-height: 1.6; }
+.footer-note { position: absolute; bottom: 28px; left: 7vw; color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 600px) { .editor-shell { padding: 24px 8vw; } .editor-card { margin-top: 15vh; } .editor-header { align-items: start; flex-direction: column; gap: 18px; } .footer-note { position: static; margin-top: 20px; line-height: 1.6; } }

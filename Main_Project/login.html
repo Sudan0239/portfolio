@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Editor Login</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <main class="editor-shell">
+    <a class="back-link" href="main.html">← BACK TO PORTFOLIO</a>
+    <section class="editor-card" aria-live="polite">
+      <p class="eyebrow">PRIVATE WORKSPACE · PORTFOLIO</p>
+      <h1>Blog<br><em>editor.</em></h1>
+      <p class="intro">Sign in to update the blog and publish a fresh timestamp to the portfolio.</p>
+
+      <form id="login-form" class="login-form">
+        <label for="username">USERNAME</label>
+        <input id="username" name="username" type="text" autocomplete="username" required>
+        <label for="password">PASSWORD</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required>
+        <button type="submit">LOG IN <span>→</span></button>
+        <p id="login-message" class="form-message" role="alert"></p>
+      </form>
+
+      <form id="editor-form" class="editor-form" hidden>
+        <div class="editor-header">
+          <div><p class="eyebrow">BLOG RECORD</p><h2>Make an update.</h2></div>
+          <button id="logout" class="quiet-button" type="button">LOG OUT</button>
+        </div>
+        <label for="blog-title">TITLE</label>
+        <input id="blog-title" name="blog-title" type="text" required>
+        <label for="blog-body">BLOG CONTENT</label>
+        <textarea id="blog-body" name="blog-body" rows="12" required></textarea>
+        <button type="submit">SAVE UPDATE <span>↗</span></button>
+        <p id="save-message" class="form-message" role="status"></p>
+      </form>
+    </section>
+    <p class="footer-note">LOCAL EDITOR · UPDATES ARE SAVED IN THIS BROWSER</p>
+  </main>
+  <script src="login.js"></script>
+</body>
+</html>
