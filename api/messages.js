@@ -35,14 +35,31 @@ module.exports = async (request, response) => {
     return response.status(400).json({ error: 'Please provide a valid email address.' });
   }
 
+  if (!process.env.DATABASE_URL) {
+    console.error('DATABASE_URL is not configured.');
+    return response.status(500).json({ error: 'Database is not configured.' });
+  }
+
+  if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
+    console.error('GMAIL_USER or GMAIL_APP_PASSWORD is not configured.');
+    return response.status(500).json({ error: 'Email is not configured.' });
+  }
+
+  let messageId;
+
   try {
     const rows = await sql`
       INSERT INTO messages (name, contact, message)
       VALUES (${name}, ${contact}, ${message})
       RETURNING id
     `;
-    const messageId = rows[0].id;
+    messageId = rows[0].id;
+  } catch (error) {
+    console.error('Message insert failed:', error);
+    return response.status(500).json({ error: 'Unable to save message to the database.' });
+  }
 
+  try {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
@@ -58,10 +75,15 @@ module.exports = async (request, response) => {
       text: `Dear ${name},\n\nThank you for your message. We have received it and will get back to you within 48 hours.\n\nYour message ID is: ${messageId}\n\nRegards,\nSudan Srinivasan`,
       html: `<p>Dear ${escapeHtml(name)},</p><p>Thank you for your message. We have received it and will get back to you within 48 hours.</p><p><strong>Your message ID is: ${messageId}</strong></p><p>Regards,<br>Sudan Srinivasan</p>`
     });
-
-    return response.status(201).json({ success: true, id: messageId, emailSent: true });
   } catch (error) {
-    console.error('Message insert failed:', error);
-    return response.status(500).json({ error: 'Unable to save message.' });
+    console.error('Confirmation email failed:', error);
+    return response.status(201).json({
+      success: true,
+      id: messageId,
+      emailSent: false,
+      warning: 'Message saved, but the confirmation email could not be sent.'
+    });
   }
+
+  return response.status(201).json({ success: true, id: messageId, emailSent: true });
 };
