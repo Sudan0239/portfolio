@@ -16,13 +16,9 @@ const defaultBlog = {
 };
 
 const defaultAboutMe = `Hi there!
-
 I'm a passionate web developer with over 2 years of experience crafting modern, responsive websites and web applications.
-
 I specialize in both front-end and back-end development, with a strong command of technologies like HTML, CSS, JavaScript, React, Node.js, and PHP.
-
 I believe great web development is all about creating seamless, intuitive user experiences while writing clean, maintainable code.
-
 Let's build something great together!`;
 
 function getSavedBlog() {
