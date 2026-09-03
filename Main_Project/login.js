@@ -7,7 +7,6 @@ const passwordInput = document.querySelector('#password');
 const titleInput = document.querySelector('#blog-title');
 const bodyInput = document.querySelector('#blog-body');
 const aboutMeInput = document.querySelector('#about-me-body');
-const sessionKey = 'portfolioEditorSignedIn';
 const sessionTimeout = 5 * 60 * 1000;
 let inactivityTimer;
 
@@ -44,7 +43,6 @@ function getSavedAboutMe() {
 }
 
 function clearEditorSession() {
-  sessionStorage.removeItem(sessionKey);
   sessionStorage.removeItem('portfolioEditorLastActivity');
   clearTimeout(inactivityTimer);
 }
@@ -78,13 +76,26 @@ function showEditor() {
 
 loginForm.addEventListener('submit', (event) => {
   event.preventDefault();
-  if (usernameInput.value.trim() === 'admin' && passwordInput.value === 'Sudan@123') {
-    startEditorSession();
-    loginMessage.textContent = '';
-    showEditor();
-  } else {
-    loginMessage.textContent = 'Login details did not match.';
-  }
+  fetch('/api/auth', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username: usernameInput.value.trim(), password: passwordInput.value })
+  })
+    .then(async (response) => {
+      if (!response.ok) {
+        const result = await response.json().catch(() => ({}));
+        throw new Error(result.error || 'Login details did not match.');
+      }
+      passwordInput.value = '';
+      startEditorSession();
+      loginMessage.textContent = '';
+      showEditor();
+    })
+    .catch((error) => {
+      loginMessage.textContent = error.message === 'Failed to fetch'
+        ? 'Unable to contact the login service.'
+        : error.message;
+    });
 });
 
 editorForm.addEventListener('submit', (event) => {
@@ -97,6 +108,11 @@ editorForm.addEventListener('submit', (event) => {
 });
 
 document.querySelector('#logout').addEventListener('click', () => {
+  fetch('/api/auth', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ action: 'logout' })
+  }).catch(() => {});
   clearEditorSession();
   editorForm.hidden = true;
   loginForm.hidden = false;
@@ -110,4 +126,9 @@ document.querySelector('#logout').addEventListener('click', () => {
   }, { passive: true });
 });
 
-clearEditorSession();
+fetch('/api/auth')
+  .then((response) => response.json())
+  .then((result) => {
+    if (result.authenticated) showEditor();
+  })
+  .catch(() => clearEditorSession());
