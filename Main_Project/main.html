@@ -639,7 +639,7 @@
 
     const contactForm = document.getElementById("contactForm");
     if (contactForm) {
-      contactForm.addEventListener("submit", function (event) {
+      contactForm.addEventListener("submit", async function (event) {
         event.preventDefault();
         const name = document.getElementById("contact-name").value.trim();
         const contact = document.getElementById("contact-phone").value.trim();
@@ -650,8 +650,23 @@
           return;
         }
 
-        showToast('Message sent successfully!');
-        contactForm.reset();
+        try {
+          const response = await fetch("/api/messages", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, contact, message })
+          });
+          const data = await response.json();
+
+          if (!response.ok) {
+            throw new Error(data.error || "Unable to send message.");
+          }
+
+          showToast('Message sent successfully!');
+          contactForm.reset();
+        } catch (error) {
+          showToast(error.message || "Unable to send message.");
+        }
       });
     }
 
