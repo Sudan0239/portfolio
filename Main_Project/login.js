@@ -60,7 +60,6 @@ function resetInactivityTimer() {
 }
 
 function startEditorSession() {
-  sessionStorage.setItem(sessionKey, 'true');
   resetInactivityTimer();
 }
 
