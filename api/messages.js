@@ -1,4 +1,5 @@
 const { neon } = require('@neondatabase/serverless');
+const nodemailer = require('nodemailer');
 
 const sql = neon(process.env.DATABASE_URL);
 
@@ -42,25 +43,21 @@ module.exports = async (request, response) => {
     `;
     const messageId = rows[0].id;
 
-    const emailResponse = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        from: process.env.FROM_EMAIL,
-        to: [contact],
-        subject: `Thank you for your message #${messageId}`,
-        text: `Dear ${name},\n\nThank you for your message. We have received it and will get back to you within 48 hours.\n\nYour message ID is: ${messageId}\n\nRegards,\nSudan Srinivasan`,
-        html: `<p>Dear ${escapeHtml(name)},</p><p>Thank you for your message. We have received it and will get back to you within 48 hours.</p><p><strong>Your message ID is: ${messageId}</strong></p><p>Regards,<br>Sudan Srinivasan</p>`
-      })
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_APP_PASSWORD
+      }
     });
 
-    if (!emailResponse.ok) {
-      console.error('Confirmation email failed:', await emailResponse.text());
-      return response.status(201).json({ success: true, id: messageId, emailSent: false });
-    }
+    await transporter.sendMail({
+      from: process.env.GMAIL_USER,
+      to: contact,
+      subject: `Thank you for your message #${messageId}`,
+      text: `Dear ${name},\n\nThank you for your message. We have received it and will get back to you within 48 hours.\n\nYour message ID is: ${messageId}\n\nRegards,\nSudan Srinivasan`,
+      html: `<p>Dear ${escapeHtml(name)},</p><p>Thank you for your message. We have received it and will get back to you within 48 hours.</p><p><strong>Your message ID is: ${messageId}</strong></p><p>Regards,<br>Sudan Srinivasan</p>`
+    });
 
     return response.status(201).json({ success: true, id: messageId, emailSent: true });
   } catch (error) {
