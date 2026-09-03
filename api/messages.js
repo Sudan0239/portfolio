@@ -48,6 +48,20 @@ module.exports = async (request, response) => {
   let messageId;
 
   try {
+    const existingMessages = await sql`
+      SELECT id
+      FROM messages
+      WHERE LOWER(contact) = LOWER(${contact})
+      LIMIT 1
+    `;
+
+    if (existingMessages.length > 0) {
+      return response.status(409).json({
+        error: 'A ticket has already been generated for this email address.',
+        id: existingMessages[0].id
+      });
+    }
+
     const rows = await sql`
       INSERT INTO messages (name, contact, message)
       VALUES (${name}, ${contact}, ${message})
