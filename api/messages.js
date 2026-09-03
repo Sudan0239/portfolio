@@ -56,6 +56,13 @@ module.exports = async (request, response) => {
     messageId = rows[0].id;
   } catch (error) {
     console.error('Message insert failed:', error);
+
+    if (error.code === '23505') {
+      return response.status(409).json({
+        error: 'A ticket has already been generated for this email address.'
+      });
+    }
+
     return response.status(500).json({ error: 'Unable to save message to the database.' });
   }
 
