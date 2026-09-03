@@ -30,7 +30,7 @@ function showEditor() {
 
 loginForm.addEventListener('submit', (event) => {
   event.preventDefault();
-  if (usernameInput.value.trim() === 'admin' && passwordInput.value === 'portfolio2026') {
+  if (usernameInput.value.trim() === 'admin' && passwordInput.value === 'Sudan@123') {
     sessionStorage.setItem('portfolioEditorSignedIn', 'true');
     loginMessage.textContent = '';
     showEditor();

@@ -556,7 +556,6 @@
         }, 300);
         }
         
-        // Also reduce top margin of the resume container
         const resumeContainer = document.querySelector('.resume-container');
         if (resumeContainer) {
         resumeContainer.style.marginTop = '10px';
@@ -584,7 +583,7 @@
           contactTitle.style.textAlign = 'left';
         }
       }
-      // Call the function when resume section is shown
+
       document.querySelectorAll(".resume").forEach(function(el) {
         el.addEventListener("click", function() {
         setTimeout(populateResume, 900);
