@@ -103,8 +103,8 @@
           </div>
 
           <div class="form-row">
-            <label for="contact-phone">Phone / Email ID</label>
-            <input id="contact-phone" name="contact" type="text" placeholder="Phone number or email" required />
+            <label for="contact-phone">Email ID</label>
+            <input id="contact-phone" name="contact" type="email" placeholder="you@example.com" required />
           </div>
 
           <div class="form-row">
@@ -669,7 +669,9 @@
             throw new Error(data.error || "Unable to send message.");
           }
 
-          showToast('Message sent successfully!');
+          showToast(data.emailSent
+            ? 'Message sent successfully! Check your email.'
+            : 'Message received, but the confirmation email could not be sent.');
           contactForm.reset();
         } catch (error) {
           showToast(error.message || "Unable to send message.");
