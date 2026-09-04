@@ -100,3 +100,127 @@ a { color: inherit; text-decoration: none; }
   .certificate-img { width: clamp(110px, 36vw, 150px); height: clamp(110px, 36vw, 150px); }
   .contact-form { width: 100%; }
 }
+
+@media (max-width: 600px) {
+  body { min-width: 0; }
+  .box1 { top: 82px; right: 0; width: 78vw; height: 290px; box-shadow: 16px 16px 0 var(--lime); }
+  .box3 { top: 178px; right: 9vw; width: 52vw; height: 52vw; }
+
+  .heading, .blog, .resume, .contact, .login, .admin-link {
+    font-size: 9px;
+    letter-spacing: .02em;
+    white-space: nowrap;
+  }
+  .heading { top: 18px; left: 5vw; }
+  .blog { top: 18px; left: 28vw; }
+  .resume { top: 18px; left: 48vw; }
+  .contact { display: inline-block; top: 18px; left: 69vw; }
+  .admin-link { top: 52px; left: 8vw; right: auto; min-height: 32px; padding: 0; }
+  .login { top: 52px; left: auto; right: 8vw; padding: 9px 11px; border-radius: 9px; }
+
+  .avatar { top: 118px; left: 8vw; width: 118px; height: 118px; box-shadow: 10px 10px 0 var(--lime); }
+  .name {
+    top: 128px;
+    left: 42vw;
+    width: 50vw;
+    max-width: 220px;
+    font-size: clamp(34px, 11vw, 54px);
+    line-height: .9;
+    overflow-wrap: anywhere;
+  }
+  .box4 { top: 260px; left: 8vw; padding: 9px 12px; font-size: 9px; }
+
+  .icon-app, .phone-icon, .location-image { left: 8vw; width: 21px; height: 21px; }
+  .title-email, .phone, .location-1, .mail, .phone-no, .location-info { left: 17vw; max-width: 76vw; overflow-wrap: anywhere; }
+  .title-email { top: 310px; }
+  .mail { top: 332px; }
+  .phone { top: 368px; }
+  .phone-no { top: 390px; }
+  .location-1 { top: 426px; }
+  .location-info { top: 448px; }
+  .icon-app { top: 307px; }
+  .phone-icon { top: 365px; }
+  .location-image { top: 423px; }
+
+  .content-section {
+    min-height: 0;
+    margin-top: 510px;
+    padding: 72px 8vw 56px;
+    scroll-margin-top: 12px;
+  }
+  .about-me, .blog-title, .resume-title, .contact-title, .project-title {
+    max-width: 100%;
+    margin-bottom: 20px;
+    font-size: clamp(34px, 12vw, 54px) !important;
+    line-height: .92;
+    overflow-wrap: anywhere;
+  }
+  .about-me-info, .blog-info, .resume-info, .contact-info, .project-info {
+    max-width: 100%;
+    font-size: 11px;
+    line-height: 1.75;
+    overflow-wrap: anywhere;
+  }
+  .contact-info { display: grid; grid-template-columns: minmax(0, 1fr); }
+  .contact-form { min-width: 0; padding: 18px 14px; }
+  .contact-details p { overflow-wrap: anywhere; }
+  .resume-container { max-width: 100%; padding: 0; }
+  .resume-item-description { overflow-wrap: anywhere; }
+  .certificate-img { width: min(100%, 220px); height: auto; margin: 8px auto; }
+  #projects-section > h1 { max-width: 100%; font-size: 10px !important; overflow-wrap: anywhere; }
+}
+
+@media (max-width: 380px) {
+  .heading { left: 4vw; }
+  .blog { left: 27vw; }
+  .resume { left: 49vw; }
+  .contact { left: 72vw; }
+  .name { left: 40vw; width: 54vw; font-size: clamp(31px, 10.5vw, 44px); }
+  .avatar { width: 106px; height: 106px; }
+  .content-section { padding-right: 7vw; padding-left: 7vw; }
+}
+
+@media (max-width: 600px) {
+  .box1 { height: 500px; }
+  .title-email, .phone, .location-1, .mail, .phone-no, .location-info {
+    left: 18vw;
+    color: var(--ink);
+  }
+  .title-email { top: 390px; }
+  .mail { top: 414px; font-size: 13px; }
+  .phone { top: 458px; }
+  .phone-no { top: 482px; font-size: 13px; }
+  .location-1 { top: 526px; }
+  .location-info { top: 550px; font-size: 13px; }
+  .icon-app, .phone-icon, .location-image { left: 8vw; width: 25px; height: 25px; }
+  .icon-app { top: 387px; }
+  .phone-icon { top: 455px; }
+  .location-image { top: 523px; }
+  .content-section { margin-top: 630px; }
+
+  #contact-section { padding: 64px 6vw 52px; }
+  #contact-section .contact-title {
+    margin-bottom: 26px;
+    font-size: clamp(42px, 15vw, 62px) !important;
+    line-height: .9;
+  }
+  #contact-section .contact-info { gap: 26px; }
+  #contact-section .contact-details {
+    gap: 15px;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  #contact-section .contact-details p { margin: 0; }
+  #contact-section .contact-form {
+    gap: 20px;
+    padding: 22px 16px;
+  }
+  #contact-section .form-row { gap: 9px; }
+  #contact-section .form-row label { font-size: 10px; }
+  #contact-section .form-row input,
+  #contact-section .form-row textarea {
+    padding: 13px 12px;
+    font-size: 13px;
+  }
+  #contact-section .send-btn { padding: 13px 16px; font-size: 10px; }
+}
